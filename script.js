@@ -25,7 +25,7 @@ async function signUp(event) {
     let users = await getUsers();
     if (users.some(u => u.username === username)) return alert("Username already taken");
 
-    users.push({ username, password, bio: "", picture: "" });
+    users.push({ username, password, bio: "", picture: "", usernameEdited: false });
     await updateUsers(users);
 
     localStorage.setItem("loggedInUser", username);
@@ -47,15 +47,14 @@ async function login(event) {
 }
 
 // Show Logged-in User on Homepage
-function checkLogin() {
+async function checkLogin() {
     let username = localStorage.getItem("loggedInUser");
-    if (username) {
-        document.getElementById("signup-btn").style.display = "none";
-        document.getElementById("login-btn").style.display = "none";
+    if (!username) return;
 
-        document.getElementById("user-menu").style.display = "block";
-        document.getElementById("username-display").innerText = username;
-    }
+    document.getElementById("signup-btn").style.display = "none";
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("user-menu").style.display = "block";
+    document.getElementById("username-display").innerText = username;
 }
 
 // Logout
@@ -64,18 +63,33 @@ function logout() {
     window.location.href = "login.html";
 }
 
-// Edit Profile
-async function saveProfile(event) {
-    event.preventDefault();
-    const bio = document.getElementById("bio").value;
-
+// Open Edit Profile Page
+async function editProfile() {
     let username = localStorage.getItem("loggedInUser");
     let users = await getUsers();
     let user = users.find(u => u.username === username);
+    if (!user) return;
 
-    if (user.bio === "") user.bio = bio;
+    let newUsername = prompt("Enter new username (Only once, leave blank to keep current):", user.username);
+    let newBio = prompt("Enter your bio:", user.bio);
+    let newPic = prompt("Enter profile picture URL:", user.picture);
+
+    if (newUsername && user.usernameEdited) {
+        alert("Username can only be changed once!");
+        return;
+    }
+
+    user.bio = newBio || user.bio;
+    user.picture = newPic || user.picture;
+    
+    if (newUsername && !user.usernameEdited) {
+        user.username = newUsername;
+        user.usernameEdited = true;
+        localStorage.setItem("loggedInUser", newUsername);
+    }
+
     await updateUsers(users);
-
+    alert("Profile updated successfully!");
     window.location.href = "index.html";
 }
 
