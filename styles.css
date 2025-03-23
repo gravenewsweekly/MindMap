@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+#nav-links {
+    margin-top: 10px;
+}
+
+#nav-links a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+#user-menu {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+#dropdown {
+    margin-top: 5px;
+}
+
+#dropdown button {
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 2px;
+}
+
+/* Main Content */
+main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Forms */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    border: 1px solid #999;
+}
+
+button {
+    background-color: #bbb;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #aaa;
+}
