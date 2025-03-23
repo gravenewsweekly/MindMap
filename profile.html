@@ -9,11 +9,12 @@
 <body>
     <h2>Edit Profile</h2>
     <form onsubmit="saveProfile(event)">
-        <input type="text" id="edit-username" placeholder="New Username" disabled>
+        <input type="text" id="edit-username" disabled> <!-- Username cannot be changed -->
         <textarea id="bio" placeholder="Your bio"></textarea>
         <input type="file" id="profile-pic">
         <button type="submit">Save</button>
     </form>
+    <button onclick="window.location.href='index.html'">Cancel</button>
     <script src="script.js"></script>
 </body>
 </html>
